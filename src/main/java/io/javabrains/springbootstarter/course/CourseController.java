@@ -19,13 +19,17 @@ public class CourseController {
 	
 	@RequestMapping("/topics/{id}/courses")
 	public List<Course> getAllCourses(@PathVariable String id) {
-		
 		return courseService.getAllCourses(id);
 	}
 	
 	@RequestMapping("/topics/{topicId}/courses/{id}")
-	public Course getTopic(@PathVariable String id) {
+	public Course getCourse(@PathVariable String id) {
 		return courseService.getCourse(id);
+	}
+	
+	@RequestMapping("/courses/{name}")
+	public Course getCourseByName(@PathVariable String name) {
+		return courseService.getCourseByName(name);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/topics/{topicId}/courses")
@@ -40,9 +44,10 @@ public class CourseController {
 		courseService.updateCourse(course);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/topics/{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/topics/{topicId}/courses/{id}")
 	public void deleteTopic(@PathVariable String id) {
 		courseService.deleteCourse(id);
 	}
+	
 }
  
